@@ -61,7 +61,7 @@ function POST({module, module_id, data}){
                 return ERROR_STATUS;
             },
             error: function (err) {
-                console.log("Error :" + err);
+                console.log(err);
             },
         });
     }
@@ -112,7 +112,6 @@ function PUT({module, data}){
 
 function DELETE({module, data}){
 
-    console.log(data);
     
     return $.ajax({
         type: "POST",

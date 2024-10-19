@@ -23,6 +23,7 @@ class Workflow_Product extends BaseController
                     $builder->select('
                     product_tbl.product_id as id,
                     product_tbl.pet_id as pet_id,
+                    product_tbl.product_price as product_price,
                     product_tbl.brand_id as brand_id,
                     product_tbl.breed_id as breed_id,
                     product_tbl.product_type_id as product_type_id,
@@ -57,20 +58,14 @@ class Workflow_Product extends BaseController
         echo $this->response_message(false, false);
     }
 
-
-
-
-
     public function insertProduct(){
         $request = \Config\Services::request();
         $data =  $request->getPost();
         $filepath = '';
 
-
-
         $product_check = $this->model->where(array( 'brand_id' => $data['brand_id'], 'breed_id' => $data['breed_id'], 'product_type_id' => $data['product_type_id'], 'product_category_id' => $data['product_category_id'], 'name' => $data['name'],  'flag' => 1 ))->first();
-        if(!$product_check){
 
+        if(!$product_check){
             if($data && $this->model->insert($data, false)){
                 echo $this->response_message([
                     'code' => 200,
@@ -94,7 +89,6 @@ class Workflow_Product extends BaseController
         $data =  $request->getPost();
         $filepath = '';
         $updatedData=[];
-
       
         $product_check = $this->model->where(array('
         
@@ -107,29 +101,28 @@ class Workflow_Product extends BaseController
         'product_type_id =' => $data['product_type_id'],
         'flag' => 1 ))->first();
 
-           
-
-
-
+        
         if(!$product_check){
         $product_id_check = $this->model->where('product_id', $data['product_id'])->first();
 
 
-
-
         if($product_id_check){
             $updatedData['product_id']=$data['product_id'];
-
             $updatedData['brand_id']=$data['brand_id'];
             $updatedData['pet_id']=$data['pet_id'];
             $updatedData['breed_id']=$data['breed_id'];
             $updatedData['product_type_id']=$data['product_type_id'];
             $updatedData['product_category_id']=$data['product_category_id'];
             $updatedData['name']=$data['name'];
+            $updatedData['product_price']=$data['product_price'];
             $updatedData['summery']=$data['summery'];
             $updatedData['description']=$data['description'];
             $updatedData['instruction']=$data['instruction'];
+            // print_r($updatedData);
+            // exit;
             $update = $this->model->save($updatedData);
+
+
             if($data && $update){
                 if($this->model->db->affectedRows()){
                     echo $this->response_message([

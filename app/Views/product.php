@@ -49,10 +49,10 @@
                                         <thead>
                                             <tr>
                                                 <th>S.No</th>
+                                                <th>Product Id</th>
                                                 <th>Name</th>
-                                                <th>Summery</th>
-                                                <th>Description</th>
-                                                <th></th>
+                                                <th>Price</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -170,10 +170,18 @@
                                 </div>
 
 
-
-
-
-
+                                <div class="col-lg-12 mt-3">
+                                    <div class="form-floating mb-4 floating">
+                                        <input
+                                            class="form-control product_price" 
+                                            id="product_price"
+                                            placeholder="Enter the product price" 
+                                            name="product_price"
+                                        >
+                                        <label for="product_price"><span class='text-danger'>*</span> ProductPrice</label>
+                                        <span class="error text-danger mt-5 product_price"></span>
+                                    </div>
+                                </div>
 
 
                                 <div class="col-lg-12 mt-3">

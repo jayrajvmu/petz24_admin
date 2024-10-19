@@ -99,6 +99,10 @@ $("#btn-submit").on('click', function () {
       error: "Please enter the product name"
     },
     {
+      value: $("#name").val(),
+      error: "Please enter the product name"
+    },
+    {
       value: $("#summery").val(),
       error: "Please enter the summary"
     },
@@ -116,9 +120,6 @@ $("#btn-submit").on('click', function () {
       updateProductData();
     }
   }
-
-
-
 });
 
 //====[ Edit Product Data ]===
@@ -188,9 +189,9 @@ $('#brandselect').append($('<option>', { value: masterData[index].brand_id }).te
   });
   
   $("#name").val(masterData[index].name);
+  $("#product_price").val(masterData[index].product_price);
   $("#summery").val(masterData[index].summery);
   $("#description").val(masterData[index].description);
-
   if(masterData[index].instruction){
     $("#instruction").val(masterData[index].instruction);
   }
@@ -225,17 +226,13 @@ function insertProductData() {
 function updateProductData() {
 
   let data = getFormData();
-  
   data.append("product_id", product_id);
-
   PUT({ module, data }).then((response) => {
     SWAL_HANDLER(response);
-
     refreshDetails();
   });
 }
 
-    
   
     function dispImg(input, id) {
       if (input.files && input.files[0]) {
@@ -251,10 +248,14 @@ function updateProductData() {
     //====[ Get all product data ]===
     function getproductDetails() {
       GET({ module }).then((data) => {
+        console.log(data);
+        
         masterData = data;
         displayProductDetails(masterData);
         
       });
+
+      
     }
 
     
@@ -265,6 +266,8 @@ function getpetDetails() {
     petData = data;
 
   });
+
+  
 
   
 }
@@ -316,13 +319,13 @@ function getbreedDetails() {
             },
           },
           {
+            mDataProp: "id",
+          },
+          {
             mDataProp: "name",
           },
           {
-            mDataProp: "summery",
-          },
-          {
-            mDataProp: "description",
+            mDataProp: "product_price",
           },
        
       
