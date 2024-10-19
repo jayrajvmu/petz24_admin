@@ -19,8 +19,8 @@ class Workflow_Product extends BaseController
     }
 
     public function getProduct(){        
-        $builder = $this->db->table('product_tbl');
-                    $builder->select('
+        $builder = $this->db->table('product_tbl')
+                   ->select('
                     product_tbl.product_id as id,
                     product_tbl.pet_id as pet_id,
                     product_tbl.product_price as product_price,
@@ -37,13 +37,22 @@ class Workflow_Product extends BaseController
                     breed_tbl.breed_name as breed_name,
                     product_type_tbl.type as type,
                     product_category_tbl.category as category
-                    ');
-                    $builder->join('pet_tbl', 'product_tbl.pet_id = pet_tbl.pet_id', 'inner');
-                    $builder->join('product_type_tbl', 'product_tbl.product_type_id = product_type_tbl.product_type_id', 'inner');
-                    $builder->join('product_category_tbl', 'product_tbl.product_category_id = product_category_tbl.product_category_id', 'inner');
-                    $builder->join('brand_tbl', 'product_tbl.brand_id = brand_tbl.brand_id ', 'inner');
-                    $builder->join('breed_tbl', 'product_tbl.breed_id = breed_tbl.breed_id', 'inner');
-                    $builder->where('product_tbl.flag=1');
+                    ')
+                   ->join('pet_tbl', 'product_tbl.pet_id = pet_tbl.pet_id', 'inner')
+                    ->join('product_type_tbl', 'product_tbl.product_type_id = product_type_tbl.product_type_id', 'inner')
+                    ->join('product_category_tbl', 'product_tbl.product_category_id = product_category_tbl.product_category_id', 'inner')
+                    ->join('brand_tbl', 'product_tbl.brand_id = brand_tbl.brand_id ', 'inner')
+                    ->join('breed_tbl', 'product_tbl.breed_id = breed_tbl.breed_id', 'inner')
+
+                    ->where([
+                        'pet_tbl.flag' => 1,
+                        'product_type_tbl.flag' => 1,
+                        'product_category_tbl.flag' => 1,
+                        'brand_tbl.flag' => 1,
+                        'breed_tbl.flag' => 1
+
+                    ]);
+
                     $data = $builder->get();
                     $data =$data->getResult();
 

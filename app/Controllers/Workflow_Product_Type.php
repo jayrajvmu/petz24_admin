@@ -20,7 +20,11 @@ class Workflow_Product_Type extends BaseController
         $builder = $this->db->table('product_type_tbl');
                     $builder->select('*');
                     $builder->join('pet_tbl', 'pet_tbl.pet_id = product_type_tbl.pet_id');
-                    $builder->where('product_type_tbl.flag=1');
+                    // $builder->where('product_type_tbl.flag=1');
+                    $builder ->where([
+                        'pet_tbl.flag' => 1,
+                        'product_type_tbl.flag' => 1,
+                    ]) ;
                     $data = $builder->get();
                     $data =$data->getResult(); 
         if($data){

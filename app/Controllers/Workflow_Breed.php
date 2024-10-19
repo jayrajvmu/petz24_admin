@@ -23,7 +23,10 @@ class Workflow_Breed extends BaseController
         $builder = $this->db->table('breed_tbl');
         $builder->select('*');
         $builder->join('pet_tbl', 'pet_tbl.pet_id = breed_tbl.pet_id');
-        $builder->where('breed_tbl.flag=1');
+        $builder ->where([
+            'pet_tbl.flag' => 1,
+            'breed_tbl.flag' => 1
+        ]) ;
         $data = $builder->get();
         $data =$data->getResult(); 
 if($data){

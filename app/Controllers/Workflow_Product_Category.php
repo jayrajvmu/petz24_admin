@@ -23,7 +23,12 @@ class Workflow_Product_Category extends BaseController
         $builder->select('*');
         $builder->join('product_type_tbl', 'product_type_tbl.product_type_id = product_category_tbl.product_type_id');
         $builder->join('pet_tbl', 'pet_tbl.pet_id = product_type_tbl.pet_id');
-        $builder->where('product_category_tbl.flag=1');
+        $builder ->where([
+            'pet_tbl.flag' => 1,
+            'product_type_tbl.flag' => 1,
+            'product_category_tbl.flag' => 1
+        ]) ;
+
         $data = $builder->get();
         $data =$data->getResult(); 
         $last=  $this->db->getLastQuery();

@@ -51,8 +51,7 @@
                                                 <th>S.No</th>
                                                 <th>Type</th>   
                                                 <th>Pet Name</th>   
-
-                                                <th></th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>

@@ -44,19 +44,21 @@ $('#add_product').on('click',function () {
   $.each(breedData, function (key, value) {
     $('#breedselect')
       .append($('<option>', { value: value.breed_id })
-        .text(value.breed_name));
+        .text(value.pet_name +" - "+ value.breed_name));
   });
 
 
+  
   $('#producttypeselect').children().remove();
   // product type dropdown box
   $('#producttypeselect').append('<option value="">Select Product Type</option>');
   $.each(typeData, function (key, value) {
     $('#producttypeselect')
       .append($('<option>', { value: value.product_type_id })
-        .text(value.type));
+        .text(value.pet_name +" - "+ value.type));
   });
 
+  console.log(categoryData);
 
   $('#productcategoryselect').children().remove();
   // product category dropdown box
@@ -64,7 +66,7 @@ $('#add_product').on('click',function () {
   $.each(categoryData, function (key, value) {
     $('#productcategoryselect')
       .append($('<option>', { value: value.product_category_id })
-        .text(value.category));
+        .text(value.pet_name +" - "+ value.type +" - "+value.category));
   });
 
 
