@@ -4,12 +4,19 @@ function FORM_VALIDATION(formData){
         return false;
     }
 
-    const foundItem = formData.find(item => item.value === "" || item.value === null || item.value === undefined);
+    for (let item of formData) {
+      // Check if the field is empty
+      if (item.value === "" || item.value === null || item.value === undefined) {
+          validateError(item.error);
+          return false;
+      }
 
-    if(foundItem){
-        validateError(foundItem.error);
-        return false;
-    }
+      // Additional check for product price (if numberCheck is true)
+      if (item.numberCheck && (isNaN(item.value) || item.value <= 0)) {
+          validateError("Please enter a valid number for product price.");
+          return false;
+      }
+  }
 
     return true;
 }

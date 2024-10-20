@@ -101,8 +101,9 @@ $("#btn-submit").on('click', function () {
       error: "Please enter the product name"
     },
     {
-      value: $("#name").val(),
-      error: "Please enter the product name"
+      value: $("#product_price").val(),
+      error: "Please enter the product price",
+      numberCheck: true
     },
     {
       value: $("#summery").val(),
