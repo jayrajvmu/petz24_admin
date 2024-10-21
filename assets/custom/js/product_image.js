@@ -25,7 +25,7 @@ $('#add_product_img').on('click', function () {
     $('#productselect')
 
       .append($('<option>', { value: value.id })
-        .text(value.name));
+        .text(value.id +" - "+ value.name));
 
   });
   $('#product_imgModelTitle').html('Add product_img');
@@ -86,7 +86,7 @@ $(document).on("click", ".btnEdit", function () {
   $('#productselect').append($('<option>', { value: masterData[index].product_id }).text(masterData[index].name));
   $.each(productData, function (key, value) {
     $('#productselect')
-      .append($('<option>', { value: value.id }).text(value.name));
+      .append($('<option>', { value: value.id }).text(value.id +" - "+ value.name));
   });
 
 

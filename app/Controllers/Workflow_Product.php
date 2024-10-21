@@ -149,12 +149,14 @@ class Workflow_Product extends BaseController
         }
         echo $this->response_message(false, false);
 
-    }else{
+      }
+    
+      else{
         echo $this->response_message([
             'code' => 400,
             'msg' => "Product name is already there try another name!"
         ]); return;
-    }
+      }
     }
 
 

@@ -3,23 +3,6 @@ const ERROR_STATUS = JSON.stringify({
     msg: "Something went wrong!"
 });
 
-// function GET({module}){
-//     return $.ajax({
-//         type: "GET",
-//         url: base_url + 'get' + module,
-//         dataType: "json",
-//         success: function (response) {
-
-//             if(response.code == 200){
-//                 return JSON.parse(response.data)
-//             }
-//             return ERROR_STATUS;
-//         },
-//         error: function (err) {
-//           console.log("Error :" + err);
-//         },
-//     });
-// }
 
 function GET({module}) {
 
