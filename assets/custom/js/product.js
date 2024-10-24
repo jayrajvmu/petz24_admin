@@ -14,20 +14,30 @@ $(document).ready(function () {
 
 $('#add_product').on('click',function () {
   mode = "new";
-  $('#myLargeModalLabel').html('Edit Product Type');
+  
+  $('#myLargeModalLabel').html('Add Product Type');
 
   $('#product-form')[0].reset();
   // $('#product_img').html('');
 
-  $('#brandselect').children().remove();
 // brand dropdown box
+
+if((typeof brandData !== "string")||!brandData ){
+  $('#brandselect').children().remove();
+
   $('#brandselect').append('<option value="">Select Brand</option>');
   $.each(brandData, function (key, value) {
     $('#brandselect')
       .append($('<option>', { value: value.brand_id })
         .text(value.brand_name));
   });
-  
+}else{
+  SWAL_HANDLER({code:'500', msg:"Please add brand"});
+
+}
+
+
+if((typeof petData !== "string")||!petData ){
   $('#petselect').children().remove();
   // pet dropdown box
   $('#petselect').append('<option value="">Select Pet</option>');
@@ -35,9 +45,16 @@ $('#add_product').on('click',function () {
     $('#petselect')
       .append($('<option>', { value: value.pet_id })
         .text(value.pet_name));
+  
   });
+}else{
+  SWAL_HANDLER({code:'500', msg:"Please add Pet"});
 
+}
 
+  
+
+if((typeof breedData !== "string")||!breedData ){
   $('#breedselect').children().remove();
   // breed dropdown box
   $('#breedselect').append('<option value="">Select Breed</option>');
@@ -47,8 +64,13 @@ $('#add_product').on('click',function () {
         .text(value.pet_name +" - "+ value.breed_name));
   });
 
+}else{
+  SWAL_HANDLER({code:'500', msg:"Please add Breed"});
 
-  
+}
+
+
+if((typeof typeData !== "string")||!typeData ){
   $('#producttypeselect').children().remove();
   // product type dropdown box
   $('#producttypeselect').append('<option value="">Select Product Type</option>');
@@ -58,7 +80,16 @@ $('#add_product').on('click',function () {
         .text(value.pet_name +" - "+ value.type));
   });
 
-  console.log(categoryData);
+
+}else{
+  SWAL_HANDLER({code:'500', msg:"Please add Product Type"});
+
+}
+
+  
+
+if((typeof categoryData !== "string")||!categoryData ){
+
 
   $('#productcategoryselect').children().remove();
   // product category dropdown box
@@ -71,6 +102,13 @@ $('#add_product').on('click',function () {
 
 
   $("#popup-modal").modal("show");
+
+}else{
+  SWAL_HANDLER({code:'500', msg:"Please add Product Category"});
+
+}
+
+
 });
 
 $("#btn-submit").on('click', function () {

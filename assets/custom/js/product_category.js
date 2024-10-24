@@ -22,13 +22,26 @@ $('#add_product').on('click',function () {
 
   $('#product-form')[0].reset();
   $('#product_img').html('');
-  $('#productcategoryselect').children().remove();
-  $('#productcategoryselect').append('<option value="">Select Product Type</option>');
-  $.each(productType_Details, function (key, value) {
-    $('#productcategoryselect')
-      .append($('<option>', { value: value.product_type_id })
-        .text(value.type +" - "+ value.pet_name));
-  });
+
+  cleanPoup();
+
+  if((typeof productType_Details !== "string")||!productType_Details ){
+ 
+    $('#productcategoryselect').children().remove();
+    $('#productcategoryselect').append('<option value="">Select Product Type</option>');
+    $.each(productType_Details, function (key, value) {
+      $('#productcategoryselect')
+        .append($('<option>', { value: value.product_type_id })
+          .text(value.type +" - "+ value.pet_name));
+    });
+  
+  }else{
+    SWAL_HANDLER({code:'500', msg:"Please add Pet"});
+  
+  }
+
+
+  
 
   $('#productCategoryModelTitle').html('Add Product Category');
   $("#popup-modal").modal("show");

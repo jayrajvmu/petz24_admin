@@ -17,15 +17,22 @@ $('#add_product_type').on('click', function () {
   mode = 'new';
   cleanPoup();
 
-  $('#producttypeselect').children().remove();
-  $('#producttypeselect').append('<option value="">Select a pet</option>');
-  $.each(petData, function (key, value) {
-    $('#producttypeselect')
+  if((typeof petData !== "string")||!petData ){
+    $('#producttypeselect').children().remove();
+    $('#producttypeselect').append('<option value="">Select a pet</option>');
+    $.each(petData, function (key, value) {
+      $('#producttypeselect')
+  
+        .append($('<option>', { value: value.pet_id })
+          .text(value.pet_name));
+  
+    });
+  
+  }else{
+    SWAL_HANDLER({code:'500', msg:"Please add Pet"});
+  
+  }
 
-      .append($('<option>', { value: value.pet_id })
-        .text(value.pet_name));
-
-  });
 
   $('#productTypeModelTitle').html('Add Product Type');
   $("#popup-modal").modal("show");

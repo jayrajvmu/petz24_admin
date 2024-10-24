@@ -19,15 +19,25 @@ $('#add_product_img').on('click', function () {
   console.log(productData);
   
   cleanPoup();
+
+  
+if((typeof productData !== "string")||!productData ){
   $('#productselect').children().remove();
   $('#productselect').append('<option value="">Select a Product</option>');
+
+  
   $.each(productData, function (key, value) {
     $('#productselect')
 
       .append($('<option>', { value: value.id })
-        .text(value.name));
+        .text(value.id +" - "+ value.name));
 
   });
+}else{
+  SWAL_HANDLER({code:'500', msg:"Please add Product"});
+
+}
+ 
   $('#product_imgModelTitle').html('Add product_img');
   $("#popup-modal").modal("show");
 });
@@ -86,7 +96,7 @@ $(document).on("click", ".btnEdit", function () {
   $('#productselect').append($('<option>', { value: masterData[index].product_id }).text(masterData[index].name));
   $.each(productData, function (key, value) {
     $('#productselect')
-      .append($('<option>', { value: value.id }).text(value.name));
+      .append($('<option>', { value: value.id }).text(value.id +" - "+ value.name));
   });
 
 
